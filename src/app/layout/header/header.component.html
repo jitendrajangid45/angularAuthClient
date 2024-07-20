@@ -1,0 +1,15 @@
+<header>
+    <div *ngIf="auth.user$ | async as user">
+        <h2>Welcome {{ user.name }}</h2>
+    </div>
+    <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <button class="btn btn-warning" (click)="auth.logout()">
+            Log out
+        </button>
+    </div>
+    
+    <ng-template #loggedOut>
+        <h3>Angular Authentication</h3>
+        <button class="btn btn-primary" (click)="auth.loginWithRedirect()">Log in</button>
+    </ng-template>
+</header>

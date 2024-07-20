@@ -1,0 +1,39 @@
+<div *ngIf="auth.user$ | async as user">
+    <div class="row">
+        <div class="col-md-10">
+            <marquee>This is {{data.name}}'s Account ({{data.account}}) Total Transactions are <span style="font-weight: bold">{{ transactionData.length }}</span></marquee>
+        </div>
+        <div class="col-md-2">
+            <a class="link" routerLink="/homepage" routerLinkActive="active">HomePage</a><br>
+        </div>
+    </div>
+    <div class="container">
+        
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Transaction Code</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of transactionData; let i = index;">
+                <td>{{i + 1 }}</td>
+                <td>{{data.date | date:'yyyy-MM-dd'}}</td>
+                <td>{{data.amount}}</td>
+                <td>{{data.transaction_code}}</td>
+                <td>{{data.symbol}}</td>
+                <td>{{data.price  | number:'1.2-2' }}</td>
+                <td>{{data.total  | number:'1.2-2' }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    </div>
+</div>
